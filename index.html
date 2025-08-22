@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generative AI Career Playbook 2025 | Interactive Guide</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="An interactive website based on the 'Generative AI Career Playbook 2025'. Build real projects, practice for interviews with AI tools, and accelerate your career in generative AI.">
+    <meta name="keywords" content="Generative AI, AI Career, AI Playbook, Portfolio Projects, AI Interview Prep, Gemini API, AI Literacy">
+    <meta name="author" content="Leandro Calado">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://example.com/">
+    <meta property="og:title" content="Generative AI Career Playbook 2025 | Interactive Guide">
+    <meta property="og:description" content="Build real projects, practice for interviews with AI tools, and accelerate your career in generative AI.">
+    <meta property="og:image" content="https://placehold.co/1200x630/3b82f6/ffffff?text=AI+Career+Playbook">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://example.com/">
+    <meta property="twitter:title" content="Generative AI Career Playbook 2025 | Interactive Guide">
+    <meta property="twitter:description" content="Build real projects, practice for interviews with AI tools, and accelerate your career in generative AI.">
+    <meta property="twitter:image" content="https://placehold.co/1200x630/3b82f6/ffffff?text=AI+Career+Playbook">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Syntax Highlighting CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .section {
+            display: none;
+        }
+        .section.active {
+            display: block;
+        }
+        .tool-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 1rem;
+        }
+        .modal-content {
+            background: #282c34; /* Match syntax highlighting theme */
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #4a5568;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-title {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+    
+    <!-- AEO: JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      "name": "Generative AI Career Playbook 2025",
+      "description": "An interactive course to develop in-demand skills in generative AI, build portfolio projects, and prepare for interviews.",
+      "provider": {
+        "@type": "Organization",
+        "name": "AI Career Playbook",
+        "sameAs": "https://example.com"
+      },
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": "online",
+        "courseWorkload": "P3M"
+      },
+      "learningResourceType": "interactive guide",
+      "isBasedOn": {
+         "@type": "Book",
+         "name": "Generative AI Career Playbook 2025",
+         "author": {
+            "@type": "Person",
+            "name": "Leandro Calado"
+         }
+      }
+    }
+    </script>
+
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-gray-800">
+                <a href="#home" onclick="showSection('home', event)">AI Career Playbook</a>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#fundamentos" onclick="showSection('fundamentos', event)" class="text-gray-600 hover:text-blue-600 transition">Fundamentals</a>
+                <a href="#projetos" onclick="showSection('projetos', event)" class="text-gray-600 hover:text-blue-600 transition">Projects</a>
+                <a href="#carreira" onclick="showSection('carreira', event)" class="text-gray-600 hover:text-blue-600 transition">Career</a>
+                <a href="#ferramentas" onclick="showSection('ferramentas', event)" class="text-gray-600 hover:text-blue-600 transition font-semibold text-blue-600">✨ AI Tools</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white">
+            <a href="#fundamentos" onclick="showSection('fundamentos', event)" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Fundamentals</a>
+            <a href="#projetos" onclick="showSection('projetos', event)" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Projects</a>
+            <a href="#carreira" onclick="showSection('carreira', event)" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Career</a>
+            <a href="#ferramentas" onclick="showSection('ferramentas', event)" class="block py-2 px-4 text-sm text-blue-600 font-semibold hover:bg-gray-100">✨ AI Tools</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">Transform Your Career with Generative AI</h1>
+                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-8">Go beyond theory. Build real projects, prepare for interviews, and demonstrate your value with our interactive guide based on the "Generative AI Career Playbook 2025".</p>
+                <button onclick="showSection('ferramentas')" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 transition transform hover:scale-105">
+                    Explore the ✨ AI Tools
+                </button>
+            </div>
+            <div class="mt-16 grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <h3 class="text-2xl font-bold mb-2">AI Literacy</h3>
+                    <p class="text-gray-600">Master the concepts, workflows, and prompt patterns the market demands.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <h3 class="text-2xl font-bold mb-2">Portfolio Projects</h3>
+                    <p class="text-gray-600">Build 3 hands-on projects that prove your skills to recruiters.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                    <h3 class="text-2xl font-bold mb-2">Market Readiness</h3>
+                    <p class="text-gray-600">Create an impactful portfolio and prepare for interviews with a 14-day plan.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fundamentos Section -->
+        <section id="fundamentos" class="section">
+            <h2 class="text-3xl font-bold mb-6">Generative AI Fundamentals</h2>
+            <div class="space-y-8">
+                <!-- AEO: FAQ Section -->
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <script type="application/ld+json">
+                    {
+                      "@context": "https://schema.org",
+                      "@type": "FAQPage",
+                      "mainEntity": [{
+                        "@type": "Question",
+                        "name": "What is AI Literacy in practice?",
+                        "acceptedAnswer": {
+                          "@type": "Answer",
+                          "text": "AI Literacy is the ability to understand core generative AI concepts, formulate effective prompts to get reliable results, and critically evaluate the AI's output for accuracy and limitations."
+                        }
+                      },{
+                        "@type": "Question",
+                        "name": "What are the key principles for daily AI workflows?",
+                        "acceptedAnswer": {
+                          "@type": "Answer",
+                          "text": "The key principles are: 1. Task Selection: Automate repetitive, low-risk tasks. 2. Context is Everything: Provide detailed information to the AI for accuracy. 3. Human Review: Always review and approve AI-generated content before use."
+                        }
+                      },{
+                        "@type": "Question",
+                        "name": "What are the most common and effective prompt patterns?",
+                        "acceptedAnswer": {
+                          "@type": "Answer",
+                          "text": "The main prompt patterns are: Summarization (extracting key points), Transformation (changing text format), Classification (categorizing text), and Structured Extraction (pulling specific data into a table or JSON)."
+                        }
+                      }]
+                    }
+                    </script>
+                    <h3 class="text-2xl font-semibold mb-3">Frequently Asked Questions</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-semibold text-lg">What is AI Literacy in practice?</h4>
+                            <p class="text-gray-700">AI Literacy is the ability to understand core generative AI concepts, formulate effective prompts to get reliable results, and critically evaluate the AI's output for accuracy and limitations.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg">What are the key principles for daily AI workflows?</h4>
+                            <p class="text-gray-700">The key principles are: 1. <strong>Task Selection:</strong> Automate repetitive, low-risk tasks. 2. <strong>Context is Everything:</strong> Provide detailed information to the AI for accuracy. 3. <strong>Human Review:</strong> Always review and approve AI-generated content before use.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg">What are the most common and effective prompt patterns?</h4>
+                            <p class="text-gray-700">The main prompt patterns are: <strong>Summarization</strong> (extracting key points), <strong>Transformation</strong> (changing text format), <strong>Classification</strong> (categorizing text), and <strong>Structured Extraction</strong> (pulling specific data into a table or JSON).</p>
+                             <a href="#ferramentas" onclick="showSection('ferramentas', event);" class="text-blue-600 hover:underline mt-3 inline-block">Practice in the Prompt Sandbox &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projetos Section -->
+        <section id="projetos" class="section">
+            <h2 class="text-3xl font-bold mb-6">Portfolio Projects</h2>
+            <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-white p-6 rounded-lg shadow flex flex-col">
+                    <h3 class="text-xl font-bold mb-2">Project 1: Q&A System + Evaluation</h3>
+                    <p class="text-gray-600 flex-grow">Create a system that answers questions based on a collection of documents. The focus is on measuring accuracy, latency, and cost, while documenting the entire process.</p>
+                    <button onclick="openModal('project1')" class="mt-4 bg-gray-800 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-900 transition w-full">View Code</button>
+                </div>
+                <!-- Project 2 -->
+                <div class="bg-white p-6 rounded-lg shadow flex flex-col">
+                    <h3 class="text-xl font-bold mb-2">Project 2: Tabular Model + Report</h3>
+                    <p class="text-gray-600 flex-grow">Use a tabular dataset to build a simple predictive model (classification or regression) and communicate your findings in a professional report.</p>
+                    <button onclick="openModal('project2')" class="mt-4 bg-gray-800 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-900 transition w-full">View Code</button>
+                </div>
+                <!-- Project 3 -->
+                <div class="bg-white p-6 rounded-lg shadow flex flex-col">
+                    <h3 class="text-xl font-bold mb-2">Project 3: Workflow with Guardrails</h3>
+                    <p class="text-gray-600 flex-grow">Develop an AI workflow for a business scenario (e.g., automating meeting minutes), implementing guardrails and a human approval process.</p>
+                    <button onclick="openModal('project3')" class="mt-4 bg-gray-800 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-900 transition w-full">View Code</button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Carreira Section -->
+        <section id="carreira" class="section">
+            <h2 class="text-3xl font-bold mb-6">Career Development</h2>
+             <div class="space-y-8">
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-2xl font-semibold mb-3">Ch. 7: A Portfolio That Hires</h3>
+                    <p>Your portfolio should tell a story. For each project, focus on:
+                        <ul class="list-disc list-inside mt-2 space-y-1 text-gray-700">
+                            <li><strong>Problem:</strong> What was the pain point or inefficiency?</li>
+                            <li><strong>Solution:</strong> How did you solve the problem?</li>
+                            <li><strong>Impact:</strong> What were the quantifiable results (e.g., time saved, accuracy improved)?</li>
+                        </ul>
+                        <a href="#ferramentas" onclick="showSection('ferramentas', event); scrollToTool('portfolio-assistant');" class="text-blue-600 hover:underline mt-3 inline-block">Use the Portfolio Assistant &rarr;</a>
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-2xl font-semibold mb-3">Ch. 8: 14-Day Interview Plan</h3>
+                    <p>Structure your preparation. Answer behavioral questions using the <strong>STAR</strong> method (Situation, Task, Action, Result) to demonstrate your experiences clearly and impactfully.
+                    <br>
+                    <a href="#ferramentas" onclick="showSection('ferramentas', event); scrollToTool('interview-simulator');" class="text-blue-600 hover:underline mt-3 inline-block">Practice with the Interview Simulator &rarr;</a>
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-2xl font-semibold mb-3">Ch. 9: 30/60/90-Day Plan</h3>
+                    <p>Demonstrate proactivity in a new role or on your learning journey.
+                        <ul class="list-disc list-inside mt-2 space-y-1 text-gray-700">
+                            <li><strong>30 Days:</strong> Focus on orientation, learning, and quick wins.</li>
+                            <li><strong>60 Days:</strong> Focus on deeper contributions and expanding projects.</li>
+                            <li><strong>90 Days:</strong> Focus on leading initiatives and scaling your impact.</li>
+                        </ul>
+                        <a href="#ferramentas" onclick="showSection('ferramentas', event); scrollToTool('plan-generator');" class="text-blue-600 hover:underline mt-3 inline-block">Create your custom plan &rarr;</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ferramentas IA Section -->
+        <section id="ferramentas" class="section">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold">✨ Interactive AI Tools (Powered by Gemini)</h2>
+                <p class="text-gray-600 mt-2">Experience the power of generative AI to accelerate your career.</p>
+            </div>
+
+            <div class="space-y-12">
+                <!-- Plan Generator -->
+                <div id="plan-generator" class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold mb-4">1. ✨ 30/60/90-Day Plan Generator</h3>
+                    <p class="text-gray-600 mb-6">Enter your role (or desired role) and your goals to generate a personalized action plan.</p>
+                    <div class="grid md:grid-cols-2 gap-4 mb-4">
+                        <input id="plan-role" type="text" placeholder="Your role (e.g., Marketing Analyst)" class="w-full p-3 border border-gray-300 rounded-lg">
+                        <input id="plan-goal" type="text" placeholder="Your main goal (e.g., Master automation with AI)" class="w-full p-3 border border-gray-300 rounded-lg">
+                    </div>
+                    <button onclick="generatePlan()" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition">Generate Plan</button>
+                    <div id="plan-output" class="mt-6"></div>
+                </div>
+
+                <!-- Prompt Sandbox -->
+                <div id="prompt-sandbox" class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold mb-4">2. ✨ Prompt Sandbox</h3>
+                    <p class="text-gray-600 mb-6">Test different prompt patterns. Paste some text, write your prompt, and see the AI-generated result.</p>
+                    <textarea id="prompt-context" placeholder="Paste the text to be processed here (e.g., a long email, meeting notes)..." class="w-full p-3 border border-gray-300 rounded-lg h-32 mb-4"></textarea>
+                    <textarea id="prompt-instruction" placeholder="Write your prompt here (e.g., 'Summarize this text in 3 bullet points highlighting the required actions')..." class="w-full p-3 border border-gray-300 rounded-lg h-24 mb-4"></textarea>
+                    <button onclick="executePrompt()" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition">Execute Prompt</button>
+                    <div id="prompt-output" class="mt-6"></div>
+                </div>
+
+                <!-- Interview Simulator -->
+                <div id="interview-simulator" class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold mb-4">3. ✨ Interview Simulator</h3>
+                    <p class="text-gray-600 mb-6">Practice your answers to behavioral questions and receive feedback based on the STAR methodology.</p>
+                    <button onclick="startInterview()" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition">Start Simulation</button>
+                    <div id="interview-question" class="mt-6 bg-gray-100 p-4 rounded-lg hidden"></div>
+                    <textarea id="interview-answer" placeholder="Type your answer here..." class="w-full p-3 border border-gray-300 rounded-lg h-32 my-4 hidden"></textarea>
+                    <button id="interview-feedback-button" onclick="getInterviewFeedback()" class="bg-green-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-green-700 transition hidden">Get Feedback</button>
+                    <div id="interview-feedback" class="mt-6"></div>
+                </div>
+
+                <!-- Portfolio Assistant -->
+                <div id="portfolio-assistant" class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold mb-4">4. ✨ Portfolio Assistant</h3>
+                    <p class="text-gray-600 mb-6">Describe one of your projects in simple terms, and the AI will suggest impactful bullet points for your resume or LinkedIn.</p>
+                    <textarea id="portfolio-description" placeholder="Describe your project here (e.g., 'I created a Q&A system for the company's documents to help the support team')..." class="w-full p-3 border border-gray-300 rounded-lg h-24 mb-4"></textarea>
+                    <button onclick="generatePortfolioPoints()" class="bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700 transition">Generate Bullet Points</button>
+                    <div id="portfolio-output" class="mt-6"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white mt-12">
+        <div class="container mx-auto px-6 py-4 text-center">
+            <p class="text-lg">Based on the book by Leandro Calado</p>
+            <a href="https://www.amazon.com/stores/Leandro-Calado/author/B0DCTM3LGP" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 transition">
+                View more books on Amazon
+            </a>
+            <p class="text-sm text-gray-400 mt-2">&copy; 2025 AI Career Playbook Interactive Site. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+
+    <!-- Modal for Code Viewing -->
+    <div id="code-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button onclick="closeModal()" class="modal-close">&times;</button>
+            <h3 id="modal-title" class="modal-title">Project Code</h3>
+            <pre><code id="modal-code" class="language-python"></code></pre>
+        </div>
+    </div>
+
+    <!-- Syntax Highlighting JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+        // --- Project Codes ---
+        const projectCodes = {
+            project1: {
+                title: "Project 1: Q&A System + Evaluation",
+                code: `
+# -*- coding: utf-8 -*-
+"""
+Project 1: Text QA + Evaluation
+This script provides a starter template for building a simple Question-Answering (QA) system.
+It uses TF-IDF for document retrieval and includes a framework for evaluating the answers.
+"""
+
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
+
+# --- 1. Dataset Preparation ---
+documents = {
+    "doc1": "Generative AI can draft, edit, and translate text. Properly guided, it reduces time spent on routine documentation.",
+    "doc2": "AI literacy is the ability to recognize tasks that can be augmented by generative models, to design effective prompts, and to evaluate results critically.",
+    "doc3": "To avoid errors, never take AI-generated text at face value. Always review and edit for accuracy, tone, and appropriateness.",
+    "doc4": "A minimal tool stack for AI literacy includes a core generative model interface, document storage, and a basic scripting tool like Python."
+}
+qa_pairs = [
+    {"question": "What can generative AI do with text?", "true_answer": "draft, edit, and translate text", "document_id": "doc1"},
+    {"question": "What is AI literacy?", "true_answer": "the ability to recognize tasks, design prompts, and evaluate results", "document_id": "doc2"},
+    {"question": "How can you prevent mistakes when using AI?", "true_answer": "Always review and edit for accuracy", "document_id": "doc3"},
+    {"question": "What does a minimal AI tool stack include?", "true_answer": "a model interface, document storage, and a scripting tool", "document_id": "doc4"}
+]
+
+# --- 2. Retrieval Method (TF-IDF) ---
+doc_ids = list(documents.keys())
+doc_contents = list(documents.values())
+vectorizer = TfidfVectorizer()
+tfidf_matrix = vectorizer.fit_transform(doc_contents)
+
+def retrieve_most_relevant_document(question):
+    question_vector = vectorizer.transform([question])
+    similarities = cosine_similarity(question_vector, tfidf_matrix)
+    most_similar_index = np.argmax(similarities)
+    return doc_ids[most_similar_index], doc_contents[most_similar_index]
+
+# --- 3. Answering Function (Simulated AI Call) ---
+def generate_answer(question, context):
+    # In a real app, this would call the Gemini API.
+    print(f"\\n--- Simulating AI for question: '{question}' ---")
+    if "draft, edit, and translate" in context: return "draft, edit, and translate text"
+    if "recognize tasks" in context: return "the ability to recognize tasks, design prompts, and evaluate results"
+    if "review and edit" in context: return "Always review and edit for accuracy"
+    if "tool stack" in context: return "a model interface, document storage, and a scripting tool"
+    return "Insufficient information."
+
+# --- 4. Evaluation ---
+def evaluate_system():
+    correct_answers = 0
+    for pair in qa_pairs:
+        _, retrieved_context = retrieve_most_relevant_document(pair["question"])
+        generated_answer = generate_answer(pair["question"], retrieved_context)
+        if generated_answer.strip().lower() == pair["true_answer"].strip().lower():
+            correct_answers += 1
+    accuracy = (correct_answers / len(qa_pairs)) * 100
+    print(f"\\nAccuracy: {accuracy:.2f}%")
+
+if __name__ == "__main__":
+    evaluate_system()
+`
+            },
+            project2: {
+                title: "Project 2: Tabular Model + Report",
+                code: `
+# -*- coding: utf-8 -*-
+"""
+Project 2: Tabular Model + Report
+This script provides a starter template for a classic machine learning project.
+"""
+import pandas as pd
+from io import StringIO
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, classification_report
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# --- 1. Dataset ---
+csv_data = """customer_id,tenure_months,contract_type,monthly_charges,total_charges,churn
+1,12,Month-to-month,55.20,662.40,No
+2,24,One year,70.15,1683.60,No
+3,1,Month-to-month,20.05,20.05,Yes
+4,45,Two year,100.35,4515.75,No
+5,2,Month-to-month,30.50,61.00,Yes
+"""
+df = pd.read_csv(StringIO(csv_data))
+
+# --- 2. Preprocessing ---
+df = df.drop('customer_id', axis=1)
+df['churn'] = df['churn'].apply(lambda x: 1 if x == 'Yes' else 0)
+categorical_features = ['contract_type']
+numerical_features = ['tenure_months', 'monthly_charges', 'total_charges']
+X = df.drop('churn', axis=1)
+y = df['churn']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# --- 3. Modeling ---
+preprocessor = ColumnTransformer(transformers=[
+    ('num', StandardScaler(), numerical_features),
+    ('cat', OneHotEncoder(), categorical_features)])
+X_train_processed = preprocessor.fit_transform(X_train)
+X_test_processed = preprocessor.transform(X_test)
+model = LogisticRegression(random_state=42)
+model.fit(X_train_processed, y_train)
+
+# --- 4. Evaluation ---
+y_pred = model.predict(X_test_processed)
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy:.4f}")
+print(classification_report(y_test, y_pred))
+`
+            },
+            project3: {
+                title: "Project 3: Workflow with Guardrails",
+                code: `
+# -*- coding: utf-8 -*-
+"""
+Project 3: Copilot Workflow + Guardrails
+This script simulates an AI-powered workflow for automating meeting minutes.
+"""
+import datetime
+import json
+import time
+
+AUDIT_LOG_FILE = "audit_log.json"
+
+def draft_minutes_with_ai(raw_notes, meeting_topic):
+    print(f"\\n[AI Task] Drafting minutes for '{meeting_topic}'...")
+    time.sleep(1)
+    draft = {
+        "topic": meeting_topic,
+        "summary": "Key project milestones discussed.",
+        "decisions": ["Project deadline confirmed for Q4."],
+        "action_items": [
+            {"task": "Finalize Q4 roadmap", "owner": "Alice", "due_date": "2025-09-15"},
+        ],
+        "generated_at": datetime.datetime.now().isoformat()
+    }
+    return draft
+
+def human_in_the_loop_approval(draft_minutes, approver_name):
+    print("\\n" + "="*40 + "\\nPENDING HUMAN APPROVAL" + "\\n" + "="*40)
+    print(json.dumps(draft_minutes, indent=2))
+    decision = input("Approve this draft? (yes/no): ").strip().lower()
+    if decision == "yes":
+        draft_minutes["status"] = "Approved"
+        draft_minutes["approved_by"] = approver_name
+        draft_minutes["approved_at"] = datetime.datetime.now().isoformat()
+        return draft_minutes
+    return None
+
+def log_to_audit_trail(log_entry):
+    with open(AUDIT_LOG_FILE, 'a') as f:
+        f.write(json.dumps(log_entry) + "\\n")
+    print(f"[Audit] Logged: {log_entry['event']}")
+
+def run_workflow(meeting_topic, raw_notes, approver):
+    log_to_audit_trail({"event": "Workflow Started"})
+    draft = draft_minutes_with_ai(raw_notes, meeting_topic)
+    log_to_audit_trail({"event": "AI Draft Generated"})
+    final_minutes = human_in_the_loop_approval(draft, approver)
+    if final_minutes:
+        log_to_audit_trail({"event": "Human Approval Granted"})
+        print("\\nWorkflow successful.")
+    else:
+        log_to_audit_trail({"event": "Human Approval Rejected"})
+        print("\\nWorkflow terminated.")
+
+if __name__ == "__main__":
+    run_workflow("Q3 Sync", "Discussed roadmap.", "Project Manager")
+`
+            }
+        };
+
+        // --- Modal Logic ---
+        const modal = document.getElementById('code-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalCode = document.getElementById('modal-code');
+
+        function openModal(projectId) {
+            if (projectCodes[projectId]) {
+                modalTitle.textContent = projectCodes[projectId].title;
+                modalCode.textContent = projectCodes[projectId].code.trim();
+                hljs.highlightElement(modalCode);
+                modal.classList.remove('hidden');
+            }
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+        }
+
+        // --- Navigation Logic ---
+        const sections = document.querySelectorAll('.section');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function showSection(sectionId, event) {
+            if(event) event.preventDefault();
+            sections.forEach(section => {
+                section.classList.add('hidden');
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+            document.getElementById(sectionId).classList.add('active');
+            window.history.pushState(null, "", `#${sectionId}`);
+            mobileMenu.classList.add('hidden');
+        }
+
+        function scrollToTool(toolId) {
+            const toolElement = document.getElementById(toolId);
+            if (toolElement) {
+                toolElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // --- Gemini API Integration ---
+        const API_KEY = ""; // Leave empty, will be handled by the environment
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${API_KEY}`;
+
+        async function callGeminiAPI(prompt, retries = 3, delay = 1000) {
+            const payload = {
+                contents: [{
+                    role: "user",
+                    parts: [{ text: prompt }]
+                }]
+            };
+
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const response = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        return result.candidates[0].content.parts[0].text;
+                    } else {
+                         // Handle cases where the response structure is unexpected
+                        console.error("Unexpected API response structure:", result);
+                        return "Error: Could not extract text from API response.";
+                    }
+                } catch (error) {
+                    console.error(`API call attempt ${i + 1} failed:`, error);
+                    if (i < retries - 1) {
+                        await new Promise(res => setTimeout(res, delay));
+                        delay *= 2; // Exponential backoff
+                    } else {
+                        return `Error: API request failed after ${retries} attempts.`;
+                    }
+                }
+            }
+        }
+
+
+        // --- Interactive Tools Logic ---
+        function showLoader(outputElementId) {
+            document.getElementById(outputElementId).innerHTML = '<div class="loader"></div>';
+        }
+        
+        function displayError(outputElementId, message) {
+            document.getElementById(outputElementId).innerHTML = `<div class="text-red-500">${message}</div>`;
+        }
+
+        // 1. Plan Generator
+        async function generatePlan() {
+            const role = document.getElementById('plan-role').value;
+            const goal = document.getElementById('plan-goal').value;
+            if (!role || !goal) {
+                alert('Please fill in the role and goal.');
+                return;
+            }
+            const outputId = 'plan-output';
+            showLoader(outputId);
+
+            const prompt = `You are a career coach. Create a 30/60/90 day plan for a user with the role of '${role}' and the main goal of '${goal}'. The plan should be structured with clear tasks and objectives for each period (30, 60, 90 days), focusing on practical steps, learning, and delivering impact. Use the structure from the 'Generative AI Career Playbook'. Respond in HTML format, using Tailwind CSS classes for styling (e.g., "<h4 class='font-bold'>", "<ul class='list-disc'>"). Do not include markdown tags like \`\`\`html.`;
+            
+            const result = await callGeminiAPI(prompt);
+            if (result.startsWith("Error:")) {
+                displayError(outputId, result);
+            } else {
+                document.getElementById(outputId).innerHTML = result;
+            }
+        }
+
+        // 2. Prompt Sandbox
+        async function executePrompt() {
+            const context = document.getElementById('prompt-context').value;
+            const instruction = document.getElementById('prompt-instruction').value;
+            if (!context || !instruction) {
+                alert('Please fill in the text to be processed and the prompt.');
+                return;
+            }
+            const outputId = 'prompt-output';
+            showLoader(outputId);
+            
+            const prompt = `You are an AI assistant. The user has provided a context and an instruction. Follow the instruction based on the provided context.\\n\\nContext: \`\`\`${context}\`\`\`\\n\\nInstruction: \`\`\`${instruction}\`\`\`\\n\\nRespond directly to the instruction.`;
+            
+            const result = await callGeminiAPI(prompt);
+            if (result.startsWith("Error:")) {
+                displayError(outputId, result);
+            } else {
+                document.getElementById(outputId).innerHTML = `<div class="border border-gray-200 rounded-lg p-4 bg-gray-50 whitespace-pre-wrap">${result}</div>`;
+            }
+        }
+
+        // 3. Interview Simulator
+        const interviewQuestions = [
+            "Tell me about a time you used AI or automation to improve a process.",
+            "Describe a situation where an AI tool produced an incorrect or biased output. What did you do?",
+            "How do you prioritize tasks when facing multiple deadlines?",
+            "Give an example of how you explained a technical concept to a non-technical audience."
+        ];
+        let currentQuestion = '';
+
+        function startInterview() {
+            currentQuestion = interviewQuestions[Math.floor(Math.random() * interviewQuestions.length)];
+            document.getElementById('interview-question').innerHTML = `<p class="font-semibold">AI's Question:</p><p>${currentQuestion}</p>`;
+            document.getElementById('interview-question').classList.remove('hidden');
+            document.getElementById('interview-answer').classList.remove('hidden');
+            document.getElementById('interview-feedback-button').classList.remove('hidden');
+            document.getElementById('interview-feedback').innerHTML = '';
+            document.getElementById('interview-answer').value = '';
+        }
+
+        async function getInterviewFeedback() {
+            const answer = document.getElementById('interview-answer').value;
+            if (!answer) {
+                alert('Please type your answer.');
+                return;
+            }
+            const outputId = 'interview-feedback';
+            showLoader(outputId);
+
+            const prompt = `You are an expert interview coach. A user is practicing for an interview. Analyze their answer to the question '${currentQuestion}' based on the STAR (Situation, Task, Action, Result) methodology. Provide constructive feedback on each part of the STAR method. The user's answer was: '${answer}'. Respond in HTML format, using Tailwind CSS classes for styling. Do not include markdown tags like \`\`\`html.`;
+
+            const result = await callGeminiAPI(prompt);
+            if (result.startsWith("Error:")) {
+                displayError(outputId, result);
+            } else {
+                document.getElementById(outputId).innerHTML = result;
+            }
+        }
+
+        // 4. Portfolio Assistant
+        async function generatePortfolioPoints() {
+            const description = document.getElementById('portfolio-description').value;
+            if (!description) {
+                alert('Please describe your project.');
+                return;
+            }
+            const outputId = 'portfolio-output';
+            showLoader(outputId);
+
+            const prompt = `You are a professional resume writer. A user has described their project: '${description}'. Based on this description, generate 3-4 impactful bullet points for a resume or LinkedIn profile. Each bullet point should follow the 'action + result + context' formula and highlight quantifiable achievements. Respond in HTML format, with each bullet point as a list item (\`<li>\`). Do not include markdown tags like \`\`\`html.`;
+            
+            const result = await callGeminiAPI(prompt);
+            if (result.startsWith("Error:")) {
+                displayError(outputId, result);
+            } else {
+                document.getElementById(outputId).innerHTML = `<div class="border border-gray-200 rounded-lg p-4 bg-gray-50"><ul class="list-disc list-inside space-y-2">${result}</ul></div>`;
+            }
+        }
+        
+        // Initial setup
+        document.addEventListener('DOMContentLoaded', () => {
+             const sectionId = window.location.hash.substring(1) || 'home';
+             showSection(sectionId);
+        });
+    </script>
+
+</body>
+</html>
